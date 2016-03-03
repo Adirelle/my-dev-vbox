@@ -35,6 +35,8 @@ pacman --sync --needed --noconfirm \
     gtk-theme-switch2 gnome-themes-standard \
     netbeans jdk8-openjdk
 
+localectl set-x11-keymap fr
+
 systemctl enable docker
 systemctl start docker
 
@@ -42,8 +44,16 @@ useradd --create-home --user-group --groups docker,adm,wheel,disk,log,vagrant --
 
 su - $CREATE_USER <<'USERSETUP'
 mkdir -p bin .ssh .composer
-git clone -b arch-vbox https://github.com/Adirelle/XSessionConfig.git .config
-for f in .config/i3/session/*; ln -s $f .; end
+cd .config
+git init .
+git remote add origin https://github.com/Adirelle/XSessionConfig.git
+git fetch origin arch-vbox
+git checkout arch-vbox
+cd $HOME
+for f in xinitrc Xresources; ln -s  .config/i3/session/.$f $f; end
+echo -e 'vagrant\nvagrant' | passwd
 USERSETUP
 
-exit 0
+pacman --sync --sysupgrade --noconfirm linux
+
+reboot
