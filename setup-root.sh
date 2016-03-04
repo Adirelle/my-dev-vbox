@@ -52,6 +52,5 @@ cd $HOME
 for f in xinitrc Xresources; ln -s  .config/i3/session/.$f $f; end
 USERSETUP
 
-pacman --sync --sysupgrade --noconfirm linux
 
 reboot
