@@ -12,6 +12,10 @@ Vagrant.configure(2) do |config|
     vb.memory = 4096
   end
 
+  if File.directory?('pacman-cache')
+    config.vm.synced_folder "pacman-cache", "/var/cache/pacman/pkg", onwer: "root", group:"root", type: "virtualbox"
+  end
+
   config.vm.provision "shell", path: "setup-root.sh", env: {CREATE_USER: CREATE_USER}
 end
 
