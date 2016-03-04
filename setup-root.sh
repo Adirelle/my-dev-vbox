@@ -39,7 +39,7 @@ VCONSOLE
 systemctl enable docker
 
 useradd --create-home --user-group --groups docker,adm,wheel,disk,log,vagrant --shell /usr/bin/fish $CREATE_USER
-passwd -e $CREATE_USER
+echo '$CREATE_USER:vagrant' | chpasswd
 
 su - $CREATE_USER <<'USERSETUP'
 mkdir -p bin .ssh .composer
@@ -52,5 +52,6 @@ cd $HOME
 for f in xinitrc Xresources; ln -s  .config/i3/session/.$f $f; end
 USERSETUP
 
+passwd -e $CREATE_USER
 
 reboot
