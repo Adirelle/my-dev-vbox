@@ -39,6 +39,7 @@ VCONSOLE
 systemctl enable docker
 
 useradd --create-home --user-group --groups docker,adm,wheel,disk,log,vagrant --shell /usr/bin/fish $CREATE_USER
+passwd -e $CREATE_USER
 
 su - $CREATE_USER <<'USERSETUP'
 mkdir -p bin .ssh .composer
@@ -49,7 +50,6 @@ git fetch origin arch-vbox
 git checkout arch-vbox
 cd $HOME
 for f in xinitrc Xresources; ln -s  .config/i3/session/.$f $f; end
-echo -e 'vagrant\nvagrant' | passwd
 USERSETUP
 
 pacman --sync --sysupgrade --noconfirm linux
