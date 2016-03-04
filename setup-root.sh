@@ -37,7 +37,6 @@ FONT_MAP=8859-15
 VCONSOLE
 
 systemctl enable docker
-systemctl start docker
 
 useradd --create-home --user-group --groups docker,adm,wheel,disk,log,vagrant --shell /usr/bin/fish $CREATE_USER
 
