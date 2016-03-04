@@ -1,17 +1,5 @@
 #!/bin/bash -x
 
-echo LANG=fr_FR.UTF-8 >/etc/locale.conf
-echo fr_FR.UTF-8 >/etc/locale.gen
-locale-gen
-
-ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime
-
-cat <VCONSOLE >/etc/vconsole.conf
-KEYMAP=fr
-FONT=lat9w-16
-FONT_MAP=8859-15
-VCONSOLE
-
 pacman --remove --noconfirm virtualbox-guest-utils-nox
 
 pacman --sync --refresh --sysupgrade --noconfirm --ignore linux
@@ -35,7 +23,18 @@ pacman --sync --needed --noconfirm \
     gtk-theme-switch2 gnome-themes-standard \
     netbeans jdk8-openjdk
 
+echo LANG=fr_FR.UTF-8 >/etc/locale.conf
+echo fr_FR.UTF-8 >/etc/locale.gen
+locale-gen
 localectl set-x11-keymap fr
+
+ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+cat <VCONSOLE >/etc/vconsole.conf
+KEYMAP=fr
+FONT=lat9w-16
+FONT_MAP=8859-15
+VCONSOLE
 
 systemctl enable docker
 systemctl start docker
