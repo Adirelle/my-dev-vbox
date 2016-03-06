@@ -30,7 +30,7 @@ localectl set-x11-keymap fr
 
 ln -snf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
-cat <VCONSOLE >/etc/vconsole.conf
+cat <<VCONSOLE >/etc/vconsole.conf
 KEYMAP=fr
 FONT=lat9w-16
 FONT_MAP=8859-15
