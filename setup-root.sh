@@ -43,7 +43,10 @@ VCONSOLE
 systemctl enable docker
 
 useradd --create-home --user-group --groups docker,adm,wheel,disk,log,vagrant --shell /usr/bin/fish $CREATE_USER
-echo '$CREATE_USER:vagrant' | chpasswd
+cat <<PASSWDS | chpasswd
+$CREATE_USER:vagrant
+root:vagrant
+PASSWDS
 
 su - $CREATE_USER <<'USERSETUP'
 mkdir -p bin .ssh .composer
