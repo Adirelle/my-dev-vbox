@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   end
 
   if File.directory?('pacman-cache')
-    config.vm.synced_folder "pacman-cache", "/var/cache/pacman/pkg", onwer: "root", group:"root", type: "virtualbox"
+    config.vm.synced_folder "pacman-cache", "/var/cache/pacman/alt-pkg", onwer: "root", group:"root", type: "virtualbox"
   end
 
   config.vm.provision "shell", path: "setup-root.sh", env: {CREATE_USER: CREATE_USER}

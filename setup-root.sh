@@ -1,12 +1,17 @@
 #!/bin/bash -x
 
-pacman --remove --noconfirm virtualbox-guest-utils-nox
+PACMAN_OPTS="--noconfirm --cachedir=/var/cache/pacman/pkg"
+if [ -d "/var/cache/pacman/alt-pkg" ]; then
+    PACMAN_OPTS="$PACMAN_OPTS --cachedir=/var/cache/pacman/alt-pkg"
+fi
 
-pacman --sync --refresh --sysupgrade --noconfirm --ignore linux
+pacman --sync --refresh --sysupgrade $PACMAN_OPTS --ignore linux,virtualbox-guest-modules
 
-pacman --sync --needed --noconfirm \
+pacman --remove $PACMAN_OPTS virtualbox-guest-utils-nox || true
+
     fish dash python php \
     virtualbox-guest-utils \
+pacman --sync --needed $PACMAN_OPTS \
     xorg-server xorg-utils xorg-xinit xorg-xrdb mesa-libgl xf86-input-evdev libx264 \
     i3-wm i3lock i3status rxvt-unicode rxvt-unicode-terminfo \
     firefox firefox-i18n-fr thunderbird thunderbird-i18n-fr \
