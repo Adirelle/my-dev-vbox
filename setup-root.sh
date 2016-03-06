@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash -xe
 
 PACMAN_OPTS="--noconfirm --cachedir=/var/cache/pacman/pkg"
 if [ -d "/var/cache/pacman/alt-pkg" ]; then
