@@ -9,23 +9,22 @@ pacman --sync --refresh --sysupgrade $PACMAN_OPTS --ignore linux,virtualbox-gues
 
 pacman --remove $PACMAN_OPTS virtualbox-guest-utils-nox || true
 
-    fish dash python php \
-    virtualbox-guest-utils \
 pacman --sync --needed $PACMAN_OPTS \
+    fish dash python php virtualbox-guest-utils \
     xorg-server xorg-utils xorg-xinit xorg-xrdb mesa-libgl xf86-input-evdev libx264 \
     i3-wm i3lock i3status rxvt-unicode rxvt-unicode-terminfo \
     firefox firefox-i18n-fr thunderbird thunderbird-i18n-fr \
     libreoffice-fresh libreoffice-fresh-fr \
     gvim vim-spell-fr gksu \
     ttf-inconsolata ttf-liberation gnu-free-fonts \
-    pulseaudio pulseaudio-alsa pavucontrol paprefs pamixer alsa-utils \
-    spacefm udevil lsof davfs2 nfs-utils sshfs curlftpfs cifs-utils \
+    pulseaudio pulseaudio-alsa pamixer alsa-utils \
+    spacefm udevil lsof nfs-utils sshfs cifs-utils \
     wget flashplugin epdfview \
     rofi xautolock numlockx dunst libnotify nitrogen \
     keepass syncthing gnome-keyring \
     git tk \
     docker docker-compose lxc \
-    gtk-theme-switch2 gnome-themes-standard \
+    gtk-theme-switch2 \
     netbeans jdk8-openjdk
 
 echo LANG=fr_FR.UTF-8 >/etc/locale.conf
